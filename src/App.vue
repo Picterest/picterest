@@ -164,6 +164,36 @@ export default {
           user: 'User 20',
           recommended: 'Travel'
         },
+        {
+          src: 'https://i.pinimg.com/236x/4c/7f/8c/4c7f8c27bcd7ccce5f1e20919ff143f0.jpg',
+          title: 'Title 21',
+          user: 'User 21',
+          recommended: 'Travel'
+        },
+        {
+          src: 'https://i.pinimg.com/236x/64/08/c6/6408c618c3a8ec557c0a7a57694cad30.jpg',
+          title: 'Title 22',
+          user: 'User 22',
+          recommended: 'Travel'
+        },
+        {
+          src: 'https://i.pinimg.com/236x/08/b8/d4/08b8d444dfe974673f130e41d3a60227.jpg',
+          title: 'Title 13',
+          user: 'User 13',
+          recommended: 'Travel'
+        },
+        {
+          src: 'https://i.pinimg.com/236x/1b/0b/eb/1b0beba9e3f42d063dd61037e5dd8802.jpg',
+          title: 'Title 14',
+          user: 'User 14',
+          recommended: 'Travel'
+        },
+        {
+          src: 'https://i.pinimg.com/236x/02/fd/6f/02fd6feb19ec797a52a3367a73dd2c2c.jpg',
+          title: 'Title 15',
+          user: 'User 15',
+          recommended: 'Travel'
+        },
       ]
     }
   }
