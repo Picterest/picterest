@@ -8,7 +8,7 @@
           <p class="font-semibold text-white"> {{ board }} </p>
           <span class="material-icons text-white">expand_more</span>
         </button>
-        <button type="button" name="save-button">
+        <button type="button" name="button" class="rounded-full py-3 px-5 text-white bg-primary font-semibold">
           Save
         </button>
       </div>
@@ -36,9 +36,4 @@ export default {
 </script>
 
 <style lang="css" scoped>
-.save-button{
-background-color: violet;
-font
-}
-
 </style>
