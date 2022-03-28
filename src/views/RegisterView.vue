@@ -7,14 +7,24 @@
         id="logo"
       />
       <p id="register-label">Register</p>
-      <p id="email-label">Email</p>
-      <input type="text" v-model="email" id="email-placeholder" />
-      <p id="password-label">Password</p>
-      <input type="password" id="password-placeholder" v-model="password" />
-      <p id="display-label">Display Name</p>
-      <input type="text" v-model="display" id="display-placeholder" />
-      <p id="confirm-label">Confirm Password</p>
-      <input type="password" id="confirm-placeholder" v-model="confirm" />
+      <div class="input-container">
+        <div class="input">
+          <p class="label">Email</p>
+          <input type="text" v-model="email" class="placeholder" />
+        </div>
+        <div class="input">
+          <p class="label">Display Name</p>
+          <input type="text" v-model="display" class="placeholder" />
+        </div>
+        <div class="input">
+          <p class="label">Password</p>
+          <input type="password" class="placeholder" v-model="password" />
+        </div>
+        <div class="input">
+          <p class="label" >Confirm Password</p>
+          <input type="password" class="placeholder" v-model="confirm" />
+        </div>
+      </div>
       <button @click="register" class="register-button">
         <p id="register">Register</p>
       </button>
@@ -49,19 +59,16 @@ const register = () => {
   src: url(/src/assets/fonts/quicksand/Quicksand-Regular.ttf);
 }
 .desktop {
-  position: relative;
+  position: absolute;
   height: 850px;
   width: 100%;
   background: url(/src/assets/pictures/register-bg.jpg);
 }
-
 .register-container {
   position: relative;
-  display: inline-block;
   max-width: 3000px;
   margin: 80px 250px;
-  padding: 20px;
-  overflow: hidden;
+  padding: 30px 60px;
   background: rgba(196, 60, 218, 0.16);
   box-sizing: border-box;
   border: 3px solid rgba(255, 255, 255, 0.59);
@@ -71,10 +78,22 @@ const register = () => {
 
   border-radius: 50px;
 }
+
+.input-container {
+  display: grid;
+  grid-column-gap: 10rem;
+  grid-template-columns: repeat(2, 1fr);
+}
+.input {
+  margin-top: 20px;
+}
+
 .register-button {
+  position: relative;
+  padding: 17px;
   width: 24%;
   height: 10%;
-  margin: 450px 450px 40px;
+  margin: 100px 400px 40px;
   background: linear-gradient(262.06deg, #941ae3 -11.14%, #7a09c2 103.75%);
   box-shadow: 0px 4px 41px rgba(112, 10, 160, 0.4);
   border-radius: 93px;
@@ -91,125 +110,34 @@ const register = () => {
   font-weight: 700;
   font-size: medium;
   line-height: 150%;
-  margin: 17px 97px;
   color: #ffffff;
 }
 #register-label {
-  position: absolute;
   width: 180px;
   height: 57.36px;
-  left: calc(50% - 180px / 2 - 430.75px);
-  top: calc(50% - 57.36px / 2 - 160.32px);
 
   font-family: "Quicksand";
   font-style: normal;
   font-weight: 600;
   font-size: 24px;
   line-height: 48px;
-  display: flex;
   align-items: center;
 
   color: #2a1e17;
 }
 
-#email-placeholder {
-  position: absolute;
-  width: 35%;
+.placeholder {
+  width: 70%;
   height: 35px;
-  left: calc(50% - 498.75px / 2 - 271.38px);
-  top: calc(50% - 62.34px / 2 - 30.63px);
-
-  background: #ffffff;
-  border-radius: 5px;
-}
-#password-placeholder {
-  position: absolute;
-  width: 35%;
-  height: 35px;
-  left: calc(50% - 498.75px / 2 - 271.38px);
-  top: calc(50% - 62.34px / 2 + 100.54px);
-
-  background: #ffffff;
-  border-radius: 5px;
-}
-#display-placeholder {
-  position: absolute;
-  width: 35%;
-  height: 35px;
-  left: calc(50% - 498.75px / 2 + 360.62px);
-  top: calc(50% - 62.34px / 2 - 30.63px);
-  background: #ffffff;
-  border-radius: 5px;
-}
-#confirm-placeholder {
-  position: absolute;
-  width: 35%;
-  height: 35px;
-  left: calc(50% - 498.75px / 2 + 360.62px);
-  top: calc(50% - 62.34px / 2 + 100.54px);
+  padding: 0px 10px;
 
   background: #ffffff;
   border-radius: 5px;
 }
 
-#email-label {
-  position: absolute;
-  width: 100px;
+.label {
+  width: 300;
   height: 47.06px;
-  left: calc(50% - 100px / 2 - 472px);
-  top: calc(50% - 47.06px / 2 - 85.47px);
-
-  font-family: "Quicksand";
-  font-style: normal;
-  font-weight: 400;
-  font-size: 16px;
-  line-height: 22px;
-  display: flex;
-  align-items: center;
-
-  color: #2a1e17;
-}
-#password-label {
-  position: absolute;
-  width: 100px;
-  height: 47px;
-  left: calc(50% - 100px / 2 - 472px);
-  top: 54%;
-
-  font-family: "Quicksand";
-  font-style: normal;
-  font-weight: 400;
-  font-size: 18px;
-  line-height: 22px;
-  display: flex;
-  align-items: center;
-
-  color: #2a1e17;
-}
-#display-label {
-  position: absolute;
-  width: 300px;
-  height: 47.06px;
-  left: calc(50% - 498.75px / 2 + 360.62px);
-  top: calc(50% - 47.06px / 2 - 85.47px);
-
-  font-family: "Quicksand";
-  font-style: normal;
-  font-weight: 400;
-  font-size: 16px;
-  line-height: 22px;
-  display: flex;
-  align-items: center;
-
-  color: #2a1e17;
-}
-#confirm-label {
-  position: absolute;
-  width: 300px;
-  height: 47px;
-  left: calc(50% - 498.75px / 2 + 360.62px);
-  top: 54%;
-
   font-family: "Quicksand";
   font-style: normal;
   font-weight: 400;
@@ -222,10 +150,7 @@ const register = () => {
 }
 
 #logo {
-  position: absolute;
   width: 200px;
   height: 62.25px;
-  left: calc(50% - 100px / 2 - 472px);
-  top: 50px;
 }
 </style>
