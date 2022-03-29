@@ -12,7 +12,7 @@
       <span class="material-icons absolute mt-3 ml-3 text-muted">search</span>
       <input class="text-muted w-full hover:bg-lightHover rounded-full bg-light py-3 pr-3 pl-10" placeholder="Search" type="text" name="" value="">
     </div>
-    <div class="flex items-center"></div>
+    <div class="flex items-center">
       <button type="button" name="button" class="relative rounded-full hover:bg-light flex items-center justify-center p-3">
         <span class="material-icons text-3xl text-muted">notifications</span>
         <div class="rounded-full h-5 w-5 bg-primary text-white flex items-center justify-center absolute mb-5 ml-5">4</div>

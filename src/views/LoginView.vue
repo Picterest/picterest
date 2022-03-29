@@ -16,14 +16,14 @@
           <p class="label">Password</p>
           <input type="password" class="placeholder" v-model="password" />
         </div>
-        <A HREF="register" class="link">Forgot Password?</A>
+        <router-link to="/register" class="link">Forgot Password?</router-link>
       </div>
       <button @click="login" class="login-button">
         <p id="login">Login</p>
       </button>
-            <p class="register-prompt">
+      <p class="register-prompt">
         Don’t have an account yet?
-        <A HREF="register" class="link">Register for free</A>
+        <router-link to="/register" class = "link">Register for free</router-link>
       </p>
     </div>
     <div>
