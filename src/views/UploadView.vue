@@ -52,6 +52,7 @@
         "
         id="nameOfImage"
         placeholder="Enter name"
+        v-model = "name"
         />
         </div>
 
@@ -60,7 +61,7 @@
     <div class="flex justify-center">
         <div class = "mb-3 xl:w-96">
         <label for="descOfImage" class="form-label inline-block mb-2 text-gray-700"> Description </label>
-        <input
+        <textarea
         type="text"
         class="
             form-control
@@ -81,6 +82,8 @@
         "
         id="descOfImage"
         placeholder="Description"
+        v-model = "description"
+
         />
         </div>
     </div>
@@ -114,6 +117,7 @@ export default {
             fileReader.readAsDataURL(files[0]);
 
         },
+
     }
 }
 </script>

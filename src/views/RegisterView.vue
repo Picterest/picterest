@@ -53,6 +53,7 @@ const register = () => {
     });
 };
 </script>
+
 <style lang="css" scoped>
 @font-face {
   font-family: "Quicksand";
