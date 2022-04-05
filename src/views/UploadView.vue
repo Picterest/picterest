@@ -100,15 +100,19 @@
 </template>
 
 <script>
-import firestore from '@/firebase'
+import {db,storage} from '@/firebase'
 import { collection, addDoc } from "firebase/firestore"; 
+import { ref, uploadString,getDownloadURL  } from "firebase/storage";
+
 
 export default {
     data() {
        return {
             imageUrl : '',
             imageName : '',
-            imageDescription : ''
+            imageDescription : '',
+            imageDownloadUrl : null,
+            fileName : ''
             }
     },
 
@@ -118,22 +122,36 @@ export default {
             const fileReader = new FileReader();
             fileReader.addEventListener('load',() => {
                 this.imageUrl = fileReader.result;
+                this.fileName = files[0].name;
             })
             fileReader.readAsDataURL(files[0]);
-
+            
         },
 
         uploadToFirebase() {
+            const storageRef = ref(storage, this.fileName);
+            uploadString(storageRef, this.imageUrl, 'data_url').then((snapshot) => {
+                console.log('Uploaded a data_url string!');
+                getDownloadURL(snapshot.ref).then((downloadUrl) => {
+                    console.log(downloadUrl);
+                    this.imageDownloadUrl = downloadUrl;
+                    this.pushToFireStore();
+                });
+            }
+            
+            );
+
+
+        },
+
+        pushToFireStore(){
             const post = {
-                imageUrl: this.imageUrl,
                 imageName: this.imageName,
-                imageDescription: this.imageDescription
+                imageDescription: this.imageDescription,
+                imageDownloadUrl: this.imageDownloadUrl
             };
-
-            const docRef = addDoc(collection(firestore, "posts"), post)
-
-        
-
+            console.log(this.imageDownloadUrl);
+            const docRef = addDoc(collection(db, "posts"), post);
         }
 
     }
