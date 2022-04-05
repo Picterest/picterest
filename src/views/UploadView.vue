@@ -52,7 +52,7 @@
         "
         id="nameOfImage"
         placeholder="Enter name"
-        v-model = "name"
+        v-model = "imageName"
         />
         </div>
 
@@ -82,14 +82,14 @@
         "
         id="descOfImage"
         placeholder="Description"
-        v-model = "description"
+        v-model = "imageDescription"
 
         />
         </div>
     </div>
 
     <div class="flex space-x-2 justify-center">
-        <button @click= "upload" type="button" class="inline-block px-6 py-2.5 bg-gray-800 text-white font-medium text-xs leading-tight 
+        <button @click="uploadToFirebase" type="button" class="inline-block px-6 py-2.5 bg-gray-800 text-white font-medium text-xs leading-tight 
         uppercase rounded shadow-md hover:bg-gray-900 hover:shadow-lg focus:bg-gray-900 focus:shadow-lg 
         focus:outline-none focus:ring-0 active:bg-gray-900 active:shadow-lg 
         transition duration-150 ease-in-out">Upload</button>
@@ -100,10 +100,15 @@
 </template>
 
 <script>
+import db from '@/firebase'
+import { collection, addDoc } from "firebase/firestore"; 
+
 export default {
     data() {
        return {
-            imageUrl : ''
+            imageUrl : '',
+            imageName : '',
+            imageDescription : ''
             }
     },
 
@@ -117,6 +122,19 @@ export default {
             fileReader.readAsDataURL(files[0]);
 
         },
+
+        uploadToFirebase() {
+            const post = {
+                imageUrl: this.imageUrl,
+                imageName: this.imageName,
+                imageDescription: this.imageDescription
+            };
+
+            const docRef = addDoc(collection(db, "posts"), post)
+
+        
+
+        }
 
     }
 }
