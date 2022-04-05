@@ -100,7 +100,7 @@
 </template>
 
 <script>
-import db from '@/firebase'
+import firestore from '@/firebase'
 import { collection, addDoc } from "firebase/firestore"; 
 
 export default {
@@ -130,7 +130,7 @@ export default {
                 imageDescription: this.imageDescription
             };
 
-            const docRef = addDoc(collection(db, "posts"), post)
+            const docRef = addDoc(collection(firestore, "posts"), post)
 
         
 
