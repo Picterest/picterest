@@ -103,6 +103,7 @@
 import {db,storage} from '@/firebase'
 import { collection, addDoc } from "firebase/firestore"; 
 import { ref, uploadString,getDownloadURL  } from "firebase/storage";
+import { getAuth } from '@firebase/auth';
 
 
 export default {
@@ -146,11 +147,13 @@ export default {
 
         pushToFireStore(){
             const post = {
+                userId: getAuth().currentUser.uid,
                 imageName: this.imageName,
                 imageDescription: this.imageDescription,
                 imageDownloadUrl: this.imageDownloadUrl
             };
             console.log(this.imageDownloadUrl);
+            
             const docRef = addDoc(collection(db, "posts"), post);
         }
 
