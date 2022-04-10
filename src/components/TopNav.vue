@@ -18,8 +18,9 @@
         <div class="rounded-full h-5 w-5 bg-primary text-white flex items-center justify-center absolute mb-5 ml-5">4</div>
       </button>
       <button type="button" name="button" class="relative rounded-full hover:bg-light flex items-center justify-center p-3">
-        <span class="material-icons text-3xl text-muted">textsms</span>
-        <div class="rounded-full h-5 w-5 bg-primary text-white flex items-center justify-center absolute mb-5 ml-5">1</div>
+        <span class="material-icons text-3xl text-muted">add_a_photo</span>
+        <router-link to="/upload" class = "link">Upload</router-link>
+        <!-- <div class="rounded-full h-5 w-5 bg-primary text-white flex items-center justify-center absolute mb-5 ml-5">1</div> -->
       </button>
       <button class="rounded-full hover:bg-light p-3 flex items-center justify-center" type="button" name="button">
         <div class="w-6 h-6 bg-cover bg-center rounded-full" style="background-image: url(profile.jpg)"></div>
