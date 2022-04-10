@@ -34,25 +34,46 @@
 
 <script setup>
 import { ref } from "vue";
-import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
+import { getAuth, createUserWithEmailAndPassword,updateProfile } from "firebase/auth";
 import { useRouter } from "vue-router";
 
 const router = useRouter();
 const email = ref("");
 const password = ref("");
+const display = ref("");
 
-const register = () => {
-  createUserWithEmailAndPassword(getAuth(), email.value, password.value)
-    .then((data) => {
-      console.log("Successfully registered!");
-      router.push("/");
-    })
-    .catch((error) => {
-      console.log(error.code);
-      alert(error.message);
-    });
+const register = async() => {
+  try{
+    await createUserWithEmailAndPassword(getAuth(), email.value, password.value)
+      .then( (data) => {
+        console.log("Successfully registered!");
+      })
+      .catch((error) => {
+        console.log(error.code);
+        alert(error.message);
+      });
+
+    await updateProfile(getAuth().currentUser,{
+      displayName: display.value
+    }).then(()=>{
+        // console.log(getAuth().currentUser.displayName)
+        router.push("/");
+      }).catch((err) => console.log(err));
+  }catch (err) {
+      console.log(err);
+  }
+//--------use displayName from firebase----------//
+// import {getAuth} from 'firebase/auth';
+// const auth = getAuth();
+// const user  = auth.currentUser;
+// if (user !== null){
+//   console.log(user.displayName)
+//   console.log(user.email)
+//   console.log(user.uid)
+// }
 };
 </script>
+
 <style lang="css" scoped>
 @font-face {
   font-family: "Quicksand";

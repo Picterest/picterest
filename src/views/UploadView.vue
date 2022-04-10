@@ -1,0 +1,163 @@
+<template>
+
+    <div class="flex flex-wrap justify-center">
+        <img v-bind:src="imageUrl"
+        class="p-1 bg-white border rounded max-w-sm"
+        />
+    </div>
+
+    <div class="flex justify-center">
+        <div class="mb-3 w-96">
+            <label for="formFile" class="form-label inline-block mb-2 ">Choose an image</label>
+            <input class="form-control
+            block
+            w-full
+            px-3
+            py-1.5
+            text-base
+            font-normal
+            text-gray-700
+            bg-white bg-clip-padding
+            border border-solid border-gray-300
+            rounded
+            transition
+            ease-in-out
+            m-0
+            focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" type="file" id="formFile"
+            @change="onFilePicked">
+        </div>
+    </div>
+
+    <div class="flex justify-center">
+        <div class = "mb-3 xl:w-96">
+        <label for="nameOfImage" class="form-label inline-block mb-2 text-gray-700"> Name of Image</label>
+        <input
+        type="text"
+        class="
+            form-control
+            block
+            w-full
+            px-3
+            py-1.5
+            text-base
+            font-normal
+            text-gray-700
+            bg-white bg-clip-padding
+            border border-solid border-gray-300
+            rounded
+            transition
+            ease-in-out
+            m-0
+            focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none
+        "
+        id="nameOfImage"
+        placeholder="Enter name"
+        v-model = "imageName"
+        />
+        </div>
+
+    </div>
+
+    <div class="flex justify-center">
+        <div class = "mb-3 xl:w-96">
+        <label for="descOfImage" class="form-label inline-block mb-2 text-gray-700"> Description </label>
+        <textarea
+        type="text"
+        class="
+            form-control
+            block
+            w-full
+            px-3
+            py-1.5
+            text-base
+            font-normal
+            text-gray-700
+            bg-white bg-clip-padding
+            border border-solid border-gray-300
+            rounded
+            transition
+            ease-in-out
+            m-0
+            focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none
+        "
+        id="descOfImage"
+        placeholder="Description"
+        v-model = "imageDescription"
+
+        />
+        </div>
+    </div>
+
+    <div class="flex space-x-2 justify-center">
+        <button @click="uploadToFirebase" type="button" class="inline-block px-6 py-2.5 bg-gray-800 text-white font-medium text-xs leading-tight 
+        uppercase rounded shadow-md hover:bg-gray-900 hover:shadow-lg focus:bg-gray-900 focus:shadow-lg 
+        focus:outline-none focus:ring-0 active:bg-gray-900 active:shadow-lg 
+        transition duration-150 ease-in-out">Upload</button>
+
+    </div>
+
+    
+</template>
+
+<script>
+import {db,storage} from '@/firebase'
+import { collection, addDoc } from "firebase/firestore"; 
+import { ref, uploadString,getDownloadURL  } from "firebase/storage";
+
+
+export default {
+    data() {
+       return {
+            imageUrl : '',
+            imageName : '',
+            imageDescription : '',
+            imageDownloadUrl : null,
+            fileName : ''
+            }
+    },
+
+    methods:{
+        onFilePicked(event) {
+            const files = event.target.files;
+            const fileReader = new FileReader();
+            fileReader.addEventListener('load',() => {
+                this.imageUrl = fileReader.result;
+                this.fileName = files[0].name;
+            })
+            fileReader.readAsDataURL(files[0]);
+            
+        },
+
+        uploadToFirebase() {
+            const storageRef = ref(storage, this.fileName);
+            uploadString(storageRef, this.imageUrl, 'data_url').then((snapshot) => {
+                console.log('Uploaded a data_url string!');
+                getDownloadURL(snapshot.ref).then((downloadUrl) => {
+                    console.log(downloadUrl);
+                    this.imageDownloadUrl = downloadUrl;
+                    this.pushToFireStore();
+                });
+            }
+            
+            );
+
+
+        },
+
+        pushToFireStore(){
+            const post = {
+                imageName: this.imageName,
+                imageDescription: this.imageDescription,
+                imageDownloadUrl: this.imageDownloadUrl
+            };
+            console.log(this.imageDownloadUrl);
+            const docRef = addDoc(collection(db, "posts"), post);
+        }
+
+    }
+}
+</script>
+
+<style>
+
+</style>
