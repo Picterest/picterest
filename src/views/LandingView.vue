@@ -33,7 +33,7 @@
       </div>
       <div class="letter">
         <img src="../assets/pictures/landingBG.png" class="letter-image">
-        <button class="btn">Get Started</button>
+        <button class="btn" @click="()=>$router.push('login')">Get Started</button>
       </div>
 
     </div>
@@ -42,7 +42,7 @@
 
 <script>
 export default {
-  name: 'Landing',
+  name: 'LandingView',
   props: {
     msg: String
   }

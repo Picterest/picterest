@@ -139,10 +139,8 @@ export default {
                     this.pushToFireStore();
                 });
             }
-            
             );
-
-
+            this.$router.push('home');
         },
 
         pushToFireStore(){
