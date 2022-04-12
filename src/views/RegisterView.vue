@@ -41,7 +41,7 @@ const router = useRouter();
 const email = ref("");
 const password = ref("");
 const display = ref("");
-
+const confirm = ref("");
 const register = async() => {
   try{
     await createUserWithEmailAndPassword(getAuth(), email.value, password.value)
@@ -57,9 +57,10 @@ const register = async() => {
       displayName: display.value
     }).then(()=>{
         // console.log(getAuth().currentUser.displayName)
-        router.push("/");
+        router.push("login");
       }).catch((err) => console.log(err));
-  }catch (err) {
+    }
+    catch (err) {
       console.log(err);
   }
 //--------use displayName from firebase----------//
