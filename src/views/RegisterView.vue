@@ -88,7 +88,7 @@ const register = async () => {
         });
     } else {
       console.log("not goodd");
-      alert("password not correct!");
+      alert("Confirm Password does not match.");
       confirm.value = "";
     }
 
