@@ -19,6 +19,7 @@
     "tailwindcss": "^1.9.6",
     "vue": "^3.2.13",
     "vue-router": "^4.0.14",
+    "vue-toast-notification": "^3.0.0",
     "vuefire": "^2.2.5",
     "vuex": "^4.0.0"
   },
