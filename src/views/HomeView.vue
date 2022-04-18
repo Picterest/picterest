@@ -21,9 +21,7 @@
 import TopNav from '../components/TopNav.vue';
 import Card from '../components/CardItem.vue';
 import { collection, query, where, onSnapshot } from "firebase/firestore";
-import {db,storage} from '@/firebase'
-
-
+import {db} from '@/firebase'
 
 export default {
 
@@ -51,7 +49,7 @@ export default {
       cards.push(entry);
 
     });
-    this.cards = cards
+    this.cards = cards;
     console.log("currentImage : ",JSON.stringify(cards),"\n");
     });
   },
