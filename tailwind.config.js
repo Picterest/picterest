@@ -8,7 +8,7 @@ module.exports = {
        'dark': '#111111',
        'light': '#EFEFEF',
        'lightHover': '#d7d7d7',
-       'muted': '#717171'
+       'muted': '#717171',
       }
     },
   },
