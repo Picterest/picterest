@@ -21,6 +21,7 @@
 import TopNav from '../components/TopNav.vue';
 import Card from '../components/CardItem.vue';
 import { collection, query, where, onSnapshot } from "firebase/firestore";
+import { getAuth } from "firebase/auth";
 import {db} from '@/firebase'
 
 export default {
@@ -67,6 +68,20 @@ export default {
         })
 
         return result
+    }
+  },
+
+  //check login user
+  mounted(){
+    var user = getAuth().currentUser;
+    if (user) {
+      // User is signed in.
+      console.log("User is signed in");
+    } else {
+      // No user is signed in.
+      console.log("No user signed in");
+      alert("You need to sign in first!");
+      // this.$router.push("/login")
     }
   },
 
