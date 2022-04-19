@@ -110,7 +110,7 @@ export default {
   display: flex;
   justify-content: name;
   align-items: name;
-  margin-right: 200px;
+  margin-right: 00px;
 }
 
 .menu-text{
