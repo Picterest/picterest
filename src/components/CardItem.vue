@@ -12,14 +12,14 @@
           Save
         </button>
       </div>
-      <div class="flex items-center w-full">
+      <!-- <div class="flex items-center w-full">
         <button type="button" name="button" class="ml-auto mr-2 bg-white rounded-full w-8 h-8 flex items-center justify-center text-sm text-dark opacity-75 hover:opacity-100">
           <span class="material-icons text-base">ios_share</span>
         </button>
         <button type="button" name="button" class="bg-white rounded-full w-8 h-8 flex items-center justify-center text-dark opacity-75 hover:opacity-100">
           <span class="material-icons text-base">more_horiz</span>
         </button>
-      </div>
+      </div> -->
     </div>
   </div>
 </template>
