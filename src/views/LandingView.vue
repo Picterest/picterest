@@ -92,7 +92,7 @@ export default {
   width: 100%;
 }
 .logo-image{
-  width: 80%;
+  width: 100%;
   height: 100%;
 }
 
@@ -105,11 +105,12 @@ export default {
 }
 
 .menu-item {
-  flex: 1;
+  flex: 3;
   text-align: name;
   display: flex;
   justify-content: name;
   align-items: name;
+  margin-right: 200px;
 }
 
 .menu-text{
@@ -122,7 +123,7 @@ export default {
 }
 
 .menu-name {
-  flex: 1;
+  flex: 3;
   display: flex;
 }
 .letter .btn {
