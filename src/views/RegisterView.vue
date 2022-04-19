@@ -97,7 +97,7 @@ const register = async () => {
     })
       .then(() => {
         // console.log(getAuth().currentUser.displayName)
-        router.push("/");
+        router.push("/login");
       })
       .catch((err) => console.log(err));
   } catch (err) {

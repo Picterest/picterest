@@ -43,7 +43,7 @@ export default {
         src : post.imageDownloadUrl,
         title: post.imageName,
         user: post.userName,
-        recommended: "Travel"
+        recommended: post.imageTag
       }
 
       cards.push(entry);
