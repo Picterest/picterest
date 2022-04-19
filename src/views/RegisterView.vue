@@ -32,7 +32,7 @@
           <input
             type="password"
             class="placeholder"
-            v-model="passwor"
+            v-model="password"
             required="required"
           />
         </div>
