@@ -42,7 +42,7 @@ export default {
       let entry = {                       //Mapping to the correct format
         src : post.imageDownloadUrl,
         title: post.imageName,
-        user: "User1",
+        user: post.userName,
         recommended: "Travel"
       }
 

@@ -159,6 +159,7 @@ export default {
         pushToFireStore(){
             const post = {
                 userId: getAuth().currentUser.uid,
+                userName: getAuth().currentUser.displayName,
                 imageName: this.imageName,
                 imageDescription: this.imageDescription,
                 imageDownloadUrl: this.imageDownloadUrl
