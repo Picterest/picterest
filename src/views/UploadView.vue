@@ -1,6 +1,6 @@
 <template>
  <top-nav/>
-    <body class = " h-screen bg-upload-pic flex justify-center   sm:mx-0	">
+    <body class = " h-screen bg-upload-pic flex justify-center sm:mx-0	">
         <div class="grid grid-cols-2 gap-10 flex place-items-center min-h-max ">       
         
             <div class = "bg-purple-300   w-full p-20 rounded-lg">     
