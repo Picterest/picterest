@@ -32,7 +32,7 @@
           <input
             type="password"
             class="placeholder"
-            v-model="passwor"
+            v-model="password"
             required="required"
           />
         </div>
@@ -97,7 +97,7 @@ const register = async () => {
     })
       .then(() => {
         // console.log(getAuth().currentUser.displayName)
-        router.push("/");
+        router.push("/login");
       })
       .catch((err) => console.log(err));
   } catch (err) {

@@ -43,8 +43,8 @@ export default {
       let entry = {                       //Mapping to the correct format
         src : post.imageDownloadUrl,
         title: post.imageName,
-        user: "User1",
-        recommended: "Travel"
+        user: post.userName,
+        recommended: post.imageTag
       }
 
       cards.push(entry);
