@@ -8,9 +8,7 @@
           <p class="font-semibold text-white"> {{ board }} </p>
           <span class="material-icons text-white">expand_more</span>
         </button>
-        <button type="button" name="button" class="rounded-full py-3 px-5 text-white bg-primary font-semibold">
-          Save
-        </button>
+        <button type="button" name="button" class="rounded-full py-3 px-5 text-white bg-primary font-semibold" @click = "downloadImg">Save</button>
       </div>
       <div class="flex items-center w-full">
         <button type="button" name="button" class="ml-auto mr-2 bg-white rounded-full w-8 h-8 flex items-center justify-center text-sm text-dark opacity-75 hover:opacity-100">
@@ -31,6 +29,22 @@ export default {
     return {
       hover: false
     }
+  },
+  methods:{
+    downloadImg() {
+      var xhr = new XMLHttpRequest();
+      xhr.responseType = 'blob';
+      xhr.onload = function() {
+        var a = document.createElement('a');
+        a.href = window.URL.createObjectURL(xhr.response);
+        a.download = "imgDownloaded.jpeg"; // Name the file anything you'd like.
+        a.style.display = 'none';
+        document.body.appendChild(a);
+        a.click();
+      };
+      xhr.open('GET', this.src);
+      xhr.send();
+    },
   }
 }
 </script>
