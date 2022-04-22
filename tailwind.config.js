@@ -14,6 +14,9 @@ module.exports = {
        'light': '#EFEFEF',
        'lightHover': '#d7d7d7',
        'muted': '#717171',
+
+       'pinkpur': '#E2B6FF',
+       
       }
       
     },
