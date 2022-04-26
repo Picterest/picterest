@@ -9,24 +9,30 @@
         <div>{{follower}}</div>
         <button class="bg-secondary text-white py-2 px-4 rounded-full">Edit Profile</button>
     </div>
-    <div class="px-20 w-full flex flex-wrap">
-    </div>
+    <!-- For filter only user picture -->
+    <div class="px-20 w-full flex flex-wrap"></div>
   </div>
 </template>
 
 <script>
 import TopNav from '../components/TopNav.vue';
+import { getAuth } from '@firebase/auth';
 export default {
     components:{ TopNav },
     data(){
         return{
-            DisplayName: "Firstname Lastname",
-            UserName: "@username",
+            DisplayName: "",//"Firstname Lastname",
+            UserName: "",//"@username",
             follower:"0 follower",
             cards:[],
         }
-    }
-
+  },
+  mounted(){
+    const auth = getAuth();
+    const user  = auth.currentUser;
+    this.$data.DisplayName = user.displayName;
+    this.$data.UserName = user.email;
+  }
 }
 </script>
 
