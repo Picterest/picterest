@@ -32,7 +32,7 @@
           <input
             type="password"
             class="placeholder"
-            v-model="passwor"
+            v-model="password"
             required="required"
           />
         </div>
@@ -86,20 +86,20 @@ const register = async () => {
           console.log(error.code);
           alert(error.message);
         });
+      await updateProfile(getAuth().currentUser, {
+        displayName: display.value,
+      })
+        .then(() => {
+          // console.log(getAuth().currentUser.displayName)
+          router.push("/login");
+        })
+        .catch((err) => console.log(err));
     } else {
       console.log("not goodd");
       alert("Confirm Password does not match.");
       confirm.value = "";
     }
 
-    await updateProfile(getAuth().currentUser, {
-      displayName: display.value,
-    })
-      .then(() => {
-        // console.log(getAuth().currentUser.displayName)
-        router.push("/");
-      })
-      .catch((err) => console.log(err));
   } catch (err) {
     console.log(err);
   }

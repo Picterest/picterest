@@ -6,7 +6,6 @@
         <div class="w-40 h-40 bg-cover bg-center rounded-full" style="background-image: url(profile.jpg)"></div>
         <div class="font-bold">{{DisplayName}}</div>
         <div>{{UserName}}</div>
-        <div>{{follower}}</div>
         <button class="bg-secondary text-white py-2 px-4 rounded-full">Edit Profile</button>
     </div>
     <!-- For filter only user picture -->
@@ -23,7 +22,6 @@ export default {
         return{
             DisplayName: "",//"Firstname Lastname",
             UserName: "",//"@username",
-            follower:"0 follower",
             cards:[],
         }
   },
