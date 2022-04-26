@@ -1,6 +1,6 @@
 <template>
   <div class="">
-    <TopNav />
+    <TopNav @searchByTag= "searchByTag" />
     <div class="px-20 w-full flex flex-wrap">
       <View
         v-show="isModalVisible"
@@ -54,25 +54,7 @@ export default {
 
   //Read the data from the firebase
   created() {
-    const q = collection(db, "posts");
-    const unsubscribe = onSnapshot(q, (querySnapshot) => {
-      const cards = [];
-      querySnapshot.forEach((doc) => {
-        const post = doc.data();
-        let entry = {
-          //Mapping to the correct format
-          src: post.imageDownloadUrl,
-          title: post.imageName,
-          user: post.userName,
-          recommended: post.imageTag,
-          description: post.imageDescription,
-        };
-
-        cards.push(entry);
-      });
-      this.cards = cards;
-      console.log("currentImage : ", JSON.stringify(cards), "\n");
-    });
+    this.getImageFromFirebase();
   },
 
   //mapping data
@@ -121,6 +103,42 @@ export default {
     closeModal() {
       this.isModalVisible = false;
     },
+    searchByTag(searchBar){
+      this.getImageFromFirebase(searchBar);
+    },
+
+    getImageFromFirebase(searchBar = ""){
+    var q;
+    var searchString = searchBar;
+    console.log(searchString);
+    if(searchString == ""){
+      q = collection(db, "posts");
+    }
+    else{
+      console.log("searching..")
+      q = query(collection(db, "posts"),where("imageTag","==",searchString.toLowerCase()));
+    }
+
+    const unsubscribe = onSnapshot(q, (querySnapshot) => {
+      const cards = [];
+      querySnapshot.forEach((doc) => {
+        const post = doc.data();
+        let entry = {
+          //Mapping to the correct format
+          src: post.imageDownloadUrl,
+          title: post.imageName,
+          user: post.userName,
+          recommended: post.imageTag,
+          description: post.imageDescription,
+        };
+
+        cards.push(entry);
+      });
+      this.cards = cards;
+      //console.log("currentImage : ", JSON.stringify(cards), "\n");
+    });
+    }
+
   },
 
   data() {
