@@ -4,19 +4,19 @@
       <div class="menu-item menu-name">   
         <img src="../assets/pictures/picterest-pur-full.png" class="logo-image">
       </div>
-      <div class="menu-item">
-        <div class="menu-text">
-          How it work
-        </div>
-      </div>
       <div class="menu-item ">
-        <div class="menu-text">
+        <div class="menu-text"  @click="()=>$router.push('about')">
           About Us
         </div>
       </div>
       <div class="menu-item">
-        <div class="menu-text">
+        <div class="menu-text" @click="()=>$router.push('about')">
           Contact Us
+        </div>
+      </div>
+      <div class="menu-item">
+        <div class="menu-text"  @click="()=>$router.push('login')">
+          Login
         </div>
       </div>
     </div>
@@ -36,7 +36,7 @@
     </div>
       <div class="letter">
         <!-- <img src="../assets/pictures/landingBG.png" class="letter-image"> -->
-        <button class="btn" @click="()=>$router.push('login')">Get Started</button>
+        <button class="btn" @click="()=>$router.push('home')">Get Started</button>
       </div>
   </div>
 </template>
