@@ -10,13 +10,13 @@
       <div class="input-container">
         <div class="input">
           <p class="label">Email</p>
-          <input type="text" v-model="email" class="placeholder" />
+          <input type="email" v-model="email" class="placeholder"  id="email-input" />
         </div>
         <div class="input">
           <p class="label">Password</p>
           <input type="password" class="placeholder" v-model="password" />
         </div>
-        <router-link to="/register" class="link">Forgot Password?</router-link>
+        <!-- <router-link to="/register" class="link">Forgot Password?</router-link> -->
       </div>
       <button @click="login" class="login-button">
         <p id="login">Login</p>
@@ -50,7 +50,7 @@ const login = () => {
   signInWithEmailAndPassword(getAuth(), email.value, password.value)
     .then((data) => {
       console.log("Successfully login!");
-      router.push("/");
+      router.push("/home");
     })
     .catch((error) => {
       console.log(error.code);
@@ -199,6 +199,10 @@ const login = () => {
   text-decoration-line: underline;
 
   color: #2a1e17;
+}
+
+#email-input:invalid {
+  border: 1px solid red;
 }
 
 </style>

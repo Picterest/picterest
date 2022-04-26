@@ -1,11 +1,16 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import HomeView from '../views/HomeView.vue'
-
+// import HomeView from '../views/HomeView.vue'
+// import LandingView from '../views/LandingView.vue'
 const routes = [
   {
     path: '/',
+    name: 'landing',
+    component: () => import('../views/LandingView.vue')
+  },
+  {
+    path: '/home',
     name: 'home',
-    component: HomeView
+    component: () => import('../views/HomeView.vue')
   },
   {
     path: '/about',
@@ -17,15 +22,29 @@ const routes = [
   },
 
   {
+    path: '/contact',
+    name: 'contact',
+    component: () => import('../views/ContactView.vue')
+  },
+
+
+  {
     path: '/register',
     name: 'register',
-    component: () => import(/* webpackChunkName: "register" */ '../views/RegisterView.vue')
+    component: () => import('../views/RegisterView.vue')
   },
 
   {
     path: '/login',
     name: 'login',
-    component: () => import(/* webpackChunkName: "register" */ '../views/LoginView.vue')
+    component: () => import('../views/LoginView.vue')
+  },
+
+  
+  {
+    path: '/upload',
+    name: 'upload',
+    component: () => import('../views/UploadView.vue')
   }
 
 ]

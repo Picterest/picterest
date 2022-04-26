@@ -1,0 +1,25 @@
+version: '3.4'
+
+services:
+  nginx_main:
+    image: nginx
+    restart: always
+    ports:
+      - "80:80"
+    volumes:
+      - "./nginx.conf:/etc/nginx/nginx.conf:ro"
+  app1:
+    build: .
+    restart: always
+    ports:
+      - "8081:80"
+  app2:
+    build: .
+    restart: always
+    ports:
+      - "8082:80"
+  app3:
+    build: .
+    restart: always
+    ports:
+      - "8083:80"

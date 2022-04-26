@@ -10,22 +10,44 @@
       <div class="input-container">
         <div class="input">
           <p class="label">Email</p>
-          <input type="text" v-model="email" class="placeholder" />
+          <input
+            type="email"
+            v-model="email"
+            class="placeholder"
+            id="email-input"
+            
+          />
         </div>
         <div class="input">
           <p class="label">Display Name</p>
-          <input type="text" v-model="display" class="placeholder" />
+          <input
+            type="text"
+            v-model="display"
+            class="placeholder"
+            required="required"
+          />
         </div>
         <div class="input">
           <p class="label">Password</p>
-          <input type="password" class="placeholder" v-model="password" />
+          <input
+            type="password"
+            class="placeholder"
+            v-model="password"
+            required="required"
+          />
         </div>
         <div class="input">
-          <p class="label" >Confirm Password</p>
-          <input type="password" class="placeholder" v-model="confirm" />
+          <p class="label">Confirm Password</p>
+          <input
+            type="password"
+            class="placeholder"
+            v-model="confirm"
+            id="confirm-input"
+            required="required"
+          />
         </div>
       </div>
-      <button @click="register" class="register-button">
+      <button @click="register" class="register-button" type="submit">
         <p id="register">Register</p>
       </button>
     </div>
@@ -33,26 +55,66 @@
 </template>
 
 <script setup>
+import VueToast from "vue-toast-notification";
+import "vue-toast-notification/dist/theme-sugar.css";
 import { ref } from "vue";
-import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
+import {
+  getAuth,
+  createUserWithEmailAndPassword,
+  updateProfile,
+} from "firebase/auth";
 import { useRouter } from "vue-router";
 
 const router = useRouter();
 const email = ref("");
 const password = ref("");
+const display = ref("");
+const confirm = ref("");
 
-const register = () => {
-  createUserWithEmailAndPassword(getAuth(), email.value, password.value)
-    .then((data) => {
-      console.log("Successfully registered!");
-      router.push("/");
+const register = async () => {
+  try {
+    if (confirm.value == password.value) {
+      await createUserWithEmailAndPassword(
+        getAuth(),
+        email.value,
+        password.value
+      )
+        .then((data) => {
+          console.log("Successfully registered!");
+        })
+        .catch((error) => {
+          console.log(error.code);
+          alert(error.message);
+        });
+    } else {
+      console.log("not goodd");
+      alert("Confirm Password does not match.");
+      confirm.value = "";
+    }
+
+    await updateProfile(getAuth().currentUser, {
+      displayName: display.value,
     })
-    .catch((error) => {
-      console.log(error.code);
-      alert(error.message);
-    });
+      .then(() => {
+        // console.log(getAuth().currentUser.displayName)
+        router.push("/login");
+      })
+      .catch((err) => console.log(err));
+  } catch (err) {
+    console.log(err);
+  }
+  //--------use displayName from firebase----------//
+  // import {getAuth} from 'firebase/auth';
+  // const auth = getAuth();
+  // const user  = auth.currentUser;
+  // if (user !== null){
+  //   console.log(user.displayName)
+  //   console.log(user.email)
+  //   console.log(user.uid)
+  // }
 };
 </script>
+
 <style lang="css" scoped>
 @font-face {
   font-family: "Quicksand";
@@ -133,6 +195,7 @@ const register = () => {
 
   background: #ffffff;
   border-radius: 5px;
+  border: none;
 }
 
 .label {
@@ -148,6 +211,11 @@ const register = () => {
 
   color: #2a1e17;
 }
+
+#email-input:invalid {
+  border: 1px solid red;
+}
+
 
 #logo {
   width: 200px;
