@@ -36,7 +36,7 @@
     </div>
       <div class="letter">
         <!-- <img src="../assets/pictures/landingBG.png" class="letter-image"> -->
-        <button class="btn" @click="()=>$router.push('home')">Get Started</button>
+        <button class="btn" @click="()=>$router.push('login')">Get Started</button>
       </div>
   </div>
 </template>
