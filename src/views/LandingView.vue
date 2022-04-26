@@ -10,7 +10,7 @@
         </div>
       </div>
       <div class="menu-item">
-        <div class="menu-text" @click="()=>$router.push('about')">
+        <div class="menu-text" @click="()=>$router.push('contact')">
           Contact Us
         </div>
       </div>
