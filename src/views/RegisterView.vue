@@ -1,11 +1,6 @@
 <template>
   <div class="desktop">
     <div class="register-container">
-      <img
-        src="../assets/pictures/picterest-pur-full.png"
-        alt="full-logo"
-        id="logo"
-      />
       <p id="register-label">Register</p>
       <div class="input-container">
         <div class="input">
@@ -122,9 +117,11 @@ const register = async () => {
 }
 .desktop {
   position: absolute;
-  height: 850px;
+  height: 100%;
   width: 100%;
   background: url(/src/assets/pictures/register-bg.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 .register-container {
   position: relative;
