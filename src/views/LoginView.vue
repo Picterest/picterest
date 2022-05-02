@@ -1,5 +1,14 @@
 <template>
   <div class="desktop">
+    <Transition>
+      <ErrorLogin
+        v-show="isModalVisible"
+        @close="closeModal"
+        :msg="errMsg"
+        class="z-40"
+      >
+      </ErrorLogin>
+    </Transition>
     <div class="login-container">
       <img
         src="../assets/pictures/picterest-pur-full.png"
@@ -10,7 +19,12 @@
       <div class="input-container">
         <div class="input">
           <p class="label">Email</p>
-          <input type="email" v-model="email" class="placeholder"  id="email-input" />
+          <input
+            type="email"
+            v-model="email"
+            class="placeholder"
+            id="email-input"
+          />
         </div>
         <div class="input">
           <p class="label">Password</p>
@@ -23,15 +37,15 @@
       </button>
       <p class="register-prompt">
         Don’t have an account yet?
-        <router-link to="/register" class = "link">Register for free</router-link>
+        <router-link to="/register" class="link">Register for free</router-link>
       </p>
     </div>
     <div>
       <img
-          src="../assets/pictures/Amongus.png"
-          alt="amongus-pic"
-          id="amongus"
-        />
+        src="../assets/pictures/Amongus.png"
+        alt="amongus-pic"
+        id="amongus"
+      />
     </div>
   </div>
 </template>
@@ -40,11 +54,16 @@
 import { ref } from "vue";
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 import { useRouter } from "vue-router";
+import ErrorLogin from "../components/ErrorLogin.vue";
 
 const router = useRouter();
 const email = ref("");
 const password = ref("");
 const errMsg = ref();
+const isModalVisible = ref();
+
+errMsg.value = "";
+isModalVisible.value = false;
 
 const login = () => {
   signInWithEmailAndPassword(getAuth(), email.value, password.value)
@@ -56,19 +75,30 @@ const login = () => {
       console.log(error.code);
       switch (error.code) {
         case "auth/invalid-email":
-          errMsg.value = "Invalid email";
+          errMsg.value = "Invalid email!";
+          showModal();
           break;
         case "auth/user-not-found":
-          errMsg.value = "No account with that email was found";
+          errMsg.value = "No account with that email was found!";
+          showModal();
           break;
         case "auth/wrong-password":
-          errMsg.value = "Incorrect password";
+          errMsg.value = "Incorrect password!";
+          showModal();
           break;
         default:
-          errMsg.value = "Email or password was incorrect";
+          errMsg.value = "Email or password was incorrect!";
+          showModal();
           break;
       }
     });
+};
+
+const showModal = () => {
+  isModalVisible.value = true;
+};
+const closeModal = () => {
+  isModalVisible.value = false;
 };
 </script>
 
@@ -81,9 +111,11 @@ const login = () => {
   position: absolute;
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  height: 850px;
+  height: 100%;
   width: 100%;
   background: url(/src/assets/pictures/register-bg.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 .input-container {
   display: grid;
@@ -182,7 +214,7 @@ const login = () => {
 }
 
 .register-prompt {
-  margin-left: 20%;  
+  margin-left: 20%;
   font-family: "Quicksand";
   font-style: normal;
   font-weight: 600;
@@ -205,4 +237,13 @@ const login = () => {
   border: 1px solid red;
 }
 
+.v-enter-active,
+.v-leave-active {
+  transition: opacity 0.5s ease;
+}
+
+.v-enter-from,
+.v-leave-to {
+  opacity: 0;
+}
 </style>
