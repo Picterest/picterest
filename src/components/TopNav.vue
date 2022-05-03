@@ -20,7 +20,7 @@
       <button type="button" name="button" class="relative rounded-full hover:bg-light flex items-center justify-center p-3" @click = "this.$router.push('upload')">
         <span class="material-icons text-3xl text-muted">add_a_photo</span>
       </button>
-      <button class="rounded-full hover:bg-light p-3 flex items-center justify-center" type="button" name="button">
+      <button class="rounded-full hover:bg-light p-3 flex items-center justify-center" type="button" name="button" @click = "this.$router.push('profile')">
         <div class="w-6 h-6 bg-cover bg-center rounded-full" style="background-image: url(profile.jpg)"></div>
       </button>
       <div class="relative inline-block">
