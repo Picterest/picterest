@@ -1,10 +1,10 @@
 <template>
   <div class="modal-backdrop" @click="close">
-    <div class="modal" @click.stop="">
-      <header class="modal-header">
+    <div class="modal2" @click.stop="">
+      <header class="modal-header2">
         <button type="button" class="btn-close" @click="close">x</button>
       </header>
-      <section class="modal-body">
+      <section class="modal-body2">
         <slot name="body" class="icon-body">
           <img
             src="../assets/pictures/xmark.png"
@@ -13,10 +13,8 @@
           />
         </slot>
         <slot>
-          <div class="detail-container">
-            <div class="description">
-              {{ msg }}
-            </div>
+          <div class="detail-container2">
+            <div class="description2">{{ msg }}</div>
           </div>
         </slot>
       </section>
@@ -38,7 +36,7 @@ export default {
   font-family: "Quicksand";
   src: url(/src/assets/fonts/quicksand/Quicksand-Regular.ttf);
 }
-.detail-container {
+.detail-container2 {
   display: block;
   margin-left: auto;
   margin-right: auto;
@@ -54,7 +52,7 @@ export default {
   border-radius: 5px;
   margin-bottom: 10px;
 }
-.description {
+.description2 {
   text-align: center;
   font-size: xx-large;
   font-weight: bold;
@@ -81,7 +79,7 @@ export default {
   align-items: center;
 }
 
-.modal {
+.modal2 {
   background: #ffffff;
   box-shadow: 2px 2px 20px 1px;
   overflow-x: auto;
@@ -89,13 +87,13 @@ export default {
   flex-direction: column;
 }
 
-.modal-header,
+.modal-header2,
 .modal-footer {
   padding: 15px;
   display: flex;
 }
 
-.modal-header {
+.modal-header2 {
   position: relative;
   color: #4aae9b;
   justify-content: space-between;
