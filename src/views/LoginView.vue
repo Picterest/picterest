@@ -143,7 +143,7 @@ const closeModal = () => {
   font-family: "Quicksand";
   font-style: normal;
   font-weight: 700;
-  font-size: medium;
+  font-size: x-large;
   line-height: 150%;
   color: #ffffff;
 }
@@ -154,17 +154,21 @@ const closeModal = () => {
   font-family: "Quicksand";
   font-style: normal;
   font-weight: 600;
-  font-size: 30px;
+  font-size: xx-large;
   line-height: 48px;
   align-items: center;
 
   color: #2a1e17;
 }
 .login-button {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 10vh;
+  margin-bottom: 2vh;
   padding: 5px;
-  width: 50%;
-  height: 10%;
-  margin: 100px 25% 20px 25%;
+  width: 20vw;
+  height: 5vh;
   background: linear-gradient(262.06deg, #941ae3 -11.14%, #7a09c2 103.75%);
   box-shadow: 0px 4px 41px rgba(112, 10, 160, 0.4);
   border-radius: 93px;
@@ -177,9 +181,9 @@ const closeModal = () => {
 }
 .placeholder {
   width: 100%;
-  height: 50px;
+  height: 5vh;
   padding: 0px 10px;
-
+  font-size: x-large;
   background: #ffffff;
   border-radius: 5px;
 }
@@ -190,7 +194,7 @@ const closeModal = () => {
   font-family: "Quicksand";
   font-style: normal;
   font-weight: 400;
-  font-size: 18px;
+  font-size: x-large;
   line-height: 22px;
   display: flex;
   align-items: center;
@@ -209,16 +213,16 @@ const closeModal = () => {
   width: 100%;
   max-width: 500px;
   height: auto;
-  margin: 80px 0px 80px 100px;
+  margin: 25vh 0vw 8vh 15vw;
   filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
 }
 
 .register-prompt {
-  margin-left: 20%;
+  text-align: center;
   font-family: "Quicksand";
   font-style: normal;
   font-weight: 600;
-  font-size: 14px;
+  font-size: large;
   line-height: 18px;
 }
 
