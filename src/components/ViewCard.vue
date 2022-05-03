@@ -90,6 +90,7 @@ export default {
   padding: 20px;
   height: 100%;
   margin-bottom: 10px;
+  font-size: medium;
 }
 .modal-backdrop {
   position: fixed;
