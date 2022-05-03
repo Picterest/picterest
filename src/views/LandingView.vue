@@ -4,24 +4,24 @@
       <div class="menu-item menu-name">   
         <img src="../assets/pictures/picterest-pur-full.png" class="logo-image">
       </div>
-      <div class="menu-item">
-        <div class="menu-text">
-          How it work
-        </div>
-      </div>
       <div class="menu-item ">
-        <div class="menu-text">
+        <div class="menu-text"  @click="()=>$router.push('about')">
           About Us
         </div>
       </div>
       <div class="menu-item">
-        <div class="menu-text">
+        <div class="menu-text" @click="()=>$router.push('contact')">
           Contact Us
+        </div>
+      </div>
+      <div class="menu-item">
+        <div class="menu-text"  @click="()=>$router.push('login')">
+          Login
         </div>
       </div>
     </div>
     
-    <div class="name">
+    <div class="word-container">
       <div class = " word">
       Explore the wild world of 
       </div>  
@@ -31,16 +31,18 @@
       <div class = " word3">
       ideas !
       </div>
-      <div class="letter">
-        <img src="../assets/pictures/landingBG.png" class="letter-image">
-        <button class="btn" @click="()=>$router.push('login')">Get Started</button>
-      </div>
+
 
     </div>
+      <div class="letter">
+        <!-- <img src="../assets/pictures/landingBG.png" class="letter-image"> -->
+        <button class="btn" @click="()=>$router.push('login')">Get Started</button>
+      </div>
   </div>
 </template>
 
 <script>
+
 export default {
   name: 'LandingView',
   props: {
@@ -49,52 +51,62 @@ export default {
 }
 </script>
 
-<style scoped>
+<style lang="css" scoped>
+@font-face {
+  font-family: "Quicksand";
+  src: url(/src/assets/fonts/quicksand/Quicksand-Regular.ttf);
+}
 
-.name {
+.word-container {
   display: flex;
-  align-items: name;
-  justify-content: name;
+  position: absolute;
+  align-items: word-container;
+  justify-content: word-container;
   vertical-align: middle;
-  width: 100vw;
-  height: calc(100vh - 60px);
+  width: 1500px;
+  height: 500px;
 }
 
 .word{
+  font-family: "Quicksand";
   font-size: 70px;
   font-weight: bold;
   color: black;
   position: absolute;
-  top: 40%;
-  left: 38%;
-  transform: translate(-50%, -50%);
+  top:20%;
+  left: 10%;
+  /* transform: translate(-50%, -50%); */
 }
 .word2{
+  font-family: "Quicksand";
   font-size: 70px;
   font-weight: bold;
   color: #C43CDA;
   position: absolute;
-  top: 50%;
-  left: 15%;
-  transform: translate(-50%, -50%);
+  top: 42%;
+  left: 10%;
+  /* transform: translate(-50%, -50%); */
 }
 .word3{
+  font-family: "Quicksand";
   font-size: 70px;
   font-weight: bold;
   color: black;
   position: absolute;
-  top: 50%;
-  left: 30%;
-  transform: translate(-50%, -50%);
+  top: 42%;
+  left: 23%;
+  /* transform: translate(-50%, -50%); */
 }
 
-.letter-image {
-  width: 100%;
-}
+
 .logo-image{
-  width: 80%;
-  height: 100%;
+  width: 200px;
+  height: 62.25px;
+  margin-left: 15px;
 }
+
+
+
 
 .menu {
   display: flex;
@@ -113,7 +125,9 @@ export default {
 }
 
 .menu-text{
-  font-size: 25px;
+  font-weight: bold;
+  font-family: "Quicksand";
+  font-size: 23px;
   color: black;
   cursor: pointer;
   padding: 10px;
@@ -125,6 +139,8 @@ export default {
   flex: 1;
   display: flex;
 }
+
+
 .letter .btn {
   position: absolute;
   width: 293px;
@@ -145,5 +161,17 @@ export default {
 .letter .btn:hover {
   background: #81708C;
 } 
+.desktop {
+  position: absolute;
+  height: 1080px;
+  width: 100%;
+ 
+  background-image: url("/src/assets/pictures/landingBG.png"); 
+  background-color: #c530c8; /* Used if the image is unavailable */
+  
+  /* background-position: center; */
+
+  background-size: cover; 
+}
 
 </style>

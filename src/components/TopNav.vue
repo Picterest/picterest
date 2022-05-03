@@ -10,7 +10,7 @@
     </div>
     <div class="flex-grow relative">
       <span class="material-icons absolute mt-3 ml-3 text-muted">search</span>
-      <input class="text-muted w-full hover:bg-lightHover rounded-full bg-light py-3 pr-3 pl-10" placeholder="Search" type="text" name="" value="">
+      <input class="text-muted w-full hover:bg-lightHover rounded-full bg-light py-3 pr-3 pl-10" placeholder="Search" type="text" v-model = "searchBar" @input="searchByTag">
     </div>
     <div class="flex items-center">
       <button type="button" name="button" class="relative rounded-full hover:bg-light flex items-center justify-center p-3">
@@ -53,7 +53,8 @@ export default {
         {name: 'Today', key: 'today'}
       ],
       selectedTab: 'home', 
-      toggleMenu: false
+      toggleMenu: false,
+      searchBar : ""
     }
   },
   methods:{
@@ -64,6 +65,10 @@ export default {
       } catch (error) {
         console.log(error);
       }
+    },
+    searchByTag(){
+      console.log("emits");
+      this.$emit("searchByTag",this.searchBar);
     }
   }
 }
