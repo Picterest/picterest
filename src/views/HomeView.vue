@@ -1,18 +1,20 @@
 <template>
   <div class="">
-    <TopNav @searchByTag= "searchByTag" />
+    <TopNav @searchByTag="searchByTag" />
     <div class="px-20 w-full flex flex-wrap">
-      <View
-        v-show="isModalVisible"
-        @close="closeModal"
-        :src="this.selectedSrc"
-        :board="this.selectedBoard"
-        :user="this.selectedUser"
-        :title="this.selectedTitle"
-        :description="this.selectedDescription"
-        class="z-40"
-      >
-      </View>
+      <Transition>
+        <View
+          v-show="isModalVisible"
+          @close="closeModal"
+          :src="this.selectedSrc"
+          :board="this.selectedBoard"
+          :user="this.selectedUser"
+          :title="this.selectedTitle"
+          :description="this.selectedDescription"
+          class="z-40"
+        >
+        </View>
+      </Transition>
       <div v-for="(arr, index) in subArrays" :key="index" class="w-1/5">
         <div v-for="(card, i) in arr" :key="i" class="w-full">
           <div class="w-full p-2">
@@ -92,53 +94,52 @@ export default {
       this.selectedUser = user;
       this.selectedTitle = title;
       this.isModalVisible = true;
-      if(description == "") {
+      if (description == "") {
         this.selectedDescription = "No description";
-      }
-      else{
+      } else {
         this.selectedDescription = description;
       }
-
     },
     closeModal() {
       this.isModalVisible = false;
     },
-    searchByTag(searchBar){
+    searchByTag(searchBar) {
       this.getImageFromFirebase(searchBar);
     },
 
-    getImageFromFirebase(searchBar = ""){
-    var q;
-    var searchString = searchBar;
-    console.log(searchString);
-    if(searchString == ""){
-      q = collection(db, "posts");
-    }
-    else{
-      console.log("searching..")
-      q = query(collection(db, "posts"),where("imageTag","==",searchString.toLowerCase()));
-    }
+    getImageFromFirebase(searchBar = "") {
+      var q;
+      var searchString = searchBar;
+      console.log(searchString);
+      if (searchString == "") {
+        q = collection(db, "posts");
+      } else {
+        console.log("searching..");
+        q = query(
+          collection(db, "posts"),
+          where("imageTag", "==", searchString.toLowerCase())
+        );
+      }
 
-    const unsubscribe = onSnapshot(q, (querySnapshot) => {
-      const cards = [];
-      querySnapshot.forEach((doc) => {
-        const post = doc.data();
-        let entry = {
-          //Mapping to the correct format
-          src: post.imageDownloadUrl,
-          title: post.imageName,
-          user: post.userName,
-          recommended: post.imageTag,
-          description: post.imageDescription,
-        };
+      const unsubscribe = onSnapshot(q, (querySnapshot) => {
+        const cards = [];
+        querySnapshot.forEach((doc) => {
+          const post = doc.data();
+          let entry = {
+            //Mapping to the correct format
+            src: post.imageDownloadUrl,
+            title: post.imageName,
+            user: post.userName,
+            recommended: post.imageTag,
+            description: post.imageDescription,
+          };
 
-        cards.push(entry);
+          cards.push(entry);
+        });
+        this.cards = cards;
+        //console.log("currentImage : ", JSON.stringify(cards), "\n");
       });
-      this.cards = cards;
-      //console.log("currentImage : ", JSON.stringify(cards), "\n");
-    });
-    }
-
+    },
   },
 
   data() {
@@ -155,4 +156,14 @@ export default {
 };
 </script>
 
-<style src="../assets/tailwind.css" />
+<style lang="css" scoped>
+.v-enter-active,
+.v-leave-active {
+  transition: opacity 0.5s ease;
+}
+
+.v-enter-from,
+.v-leave-to {
+  opacity: 0;
+}
+</style>

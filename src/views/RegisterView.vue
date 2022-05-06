@@ -1,11 +1,6 @@
 <template>
   <div class="desktop">
     <div class="register-container">
-      <img
-        src="../assets/pictures/picterest-pur-full.png"
-        alt="full-logo"
-        id="logo"
-      />
       <p id="register-label">Register</p>
       <div class="input-container">
         <div class="input">
@@ -15,7 +10,6 @@
             v-model="email"
             class="placeholder"
             id="email-input"
-            
           />
         </div>
         <div class="input">
@@ -86,20 +80,18 @@ const register = async () => {
           console.log(error.code);
           alert(error.message);
         });
+      await updateProfile(getAuth().currentUser, {
+        displayName: display.value,
+      })
+        .then(() => {
+          // console.log(getAuth().currentUser.displayName)
+          router.push("/login");
+        })
+        .catch((err) => console.log(err));
     } else {
-      console.log("not goodd");
       alert("Confirm Password does not match.");
       confirm.value = "";
     }
-
-    await updateProfile(getAuth().currentUser, {
-      displayName: display.value,
-    })
-      .then(() => {
-        // console.log(getAuth().currentUser.displayName)
-        router.push("/login");
-      })
-      .catch((err) => console.log(err));
   } catch (err) {
     console.log(err);
   }
@@ -122,9 +114,11 @@ const register = async () => {
 }
 .desktop {
   position: absolute;
-  height: 850px;
+  height: 100%;
   width: 100%;
   background: url(/src/assets/pictures/register-bg.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 .register-container {
   position: relative;
@@ -143,7 +137,8 @@ const register = async () => {
 
 .input-container {
   display: grid;
-  grid-column-gap: 10rem;
+  grid-column-gap: 10vw;
+  grid-row-gap: 4rem;
   grid-template-columns: repeat(2, 1fr);
 }
 .input {
@@ -151,11 +146,13 @@ const register = async () => {
 }
 
 .register-button {
-  position: relative;
-  padding: 17px;
-  width: 24%;
-  height: 10%;
-  margin: 100px 400px 40px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 15vh;
+  padding: 5px;
+  width: 20vw;
+  height: 5vh;
   background: linear-gradient(262.06deg, #941ae3 -11.14%, #7a09c2 103.75%);
   box-shadow: 0px 4px 41px rgba(112, 10, 160, 0.4);
   border-radius: 93px;
@@ -170,7 +167,7 @@ const register = async () => {
   font-family: "Quicksand";
   font-style: normal;
   font-weight: 700;
-  font-size: medium;
+  font-size: x-large;
   line-height: 150%;
   color: #ffffff;
 }
@@ -181,7 +178,7 @@ const register = async () => {
   font-family: "Quicksand";
   font-style: normal;
   font-weight: 600;
-  font-size: 24px;
+  font-size: xx-large;
   line-height: 48px;
   align-items: center;
 
@@ -189,10 +186,10 @@ const register = async () => {
 }
 
 .placeholder {
-  width: 70%;
-  height: 35px;
+  width: 100%;
+  height: 4vh;
   padding: 0px 10px;
-
+  font-size: x-large;
   background: #ffffff;
   border-radius: 5px;
   border: none;
@@ -204,7 +201,7 @@ const register = async () => {
   font-family: "Quicksand";
   font-style: normal;
   font-weight: 400;
-  font-size: 18px;
+  font-size: x-large;
   line-height: 22px;
   display: flex;
   align-items: center;
@@ -215,7 +212,6 @@ const register = async () => {
 #email-input:invalid {
   border: 1px solid red;
 }
-
 
 #logo {
   width: 200px;

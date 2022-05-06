@@ -15,7 +15,7 @@
             <div class="description">
               {{ description }}
             </div>
-            <button type="button" class="save-btn" @click = "downloadImg">
+            <button type="button" class="save-btn" @click="downloadImg">
               Save
             </button>
           </div>
@@ -33,16 +33,16 @@ export default {
     },
     downloadImg() {
       var xhr = new XMLHttpRequest();
-      xhr.responseType = 'blob';
-      xhr.onload = function() {
-        var a = document.createElement('a');
+      xhr.responseType = "blob";
+      xhr.onload = function () {
+        var a = document.createElement("a");
         a.href = window.URL.createObjectURL(xhr.response);
         a.download = "imgDownloaded.jpeg"; // Name the file anything you'd like.
-        a.style.display = 'none';
+        a.style.display = "none";
         document.body.appendChild(a);
         a.click();
       };
-      xhr.open('GET', this.src);
+      xhr.open("GET", this.src);
       xhr.send();
     },
   },
@@ -54,6 +54,9 @@ export default {
   src: url(/src/assets/fonts/quicksand/Quicksand-Regular.ttf);
 }
 .picture {
+  top: 0;
+  bottom: 0;
+  margin: auto;
   width: 600px;
   max-height: 800px;
   box-shadow: 14px 8px 4px rgba(0, 0, 0, 0.25);
@@ -87,6 +90,7 @@ export default {
   padding: 20px;
   height: 100%;
   margin-bottom: 10px;
+  font-size: medium;
 }
 .modal-backdrop {
   position: fixed;
@@ -103,7 +107,8 @@ export default {
 .modal {
   background: #ffffff;
   box-shadow: 2px 2px 20px 1px;
-  overflow-x: auto;
+  max-height: 100%;
+  overflow-y: auto;
   display: flex;
   flex-direction: column;
 }
@@ -126,6 +131,7 @@ export default {
   grid-template-columns: 1fr 0fr;
   position: relative;
   padding: 20px 10px;
+  height: 100vh;
 }
 
 .btn-close {
