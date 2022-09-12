@@ -52,11 +52,12 @@ import { ref } from "vue";
 .desktop {
   position: absolute;
   background: url(/src/assets/pictures/register-bg.jpg);
-  background-repeat: no-repeat;
   background-size: cover;
   width: 100%;
-  height: 100%;
+  height: auto;
 }
+
+
 .login-container {
   position: relative;
   max-width: 3000px;

@@ -34,10 +34,10 @@
 
 
     </div>
-      <div class="letter">
-        <!-- <img src="../assets/pictures/landingBG.png" class="letter-image"> -->
+
+    <div class="letter" >
         <button class="btn" @click="()=>$router.push('login')">Get Started</button>
-      </div>
+    </div>
   </div>
 </template>
 
@@ -59,12 +59,7 @@ export default {
 
 .word-container {
   display: flex;
-  position: absolute;
-  align-items: word-container;
-  justify-content: word-container;
   vertical-align: middle;
-  width: 1500px;
-  height: 500px;
 }
 
 .word{
@@ -140,13 +135,14 @@ export default {
   display: flex;
 }
 
+.letter {
+  display: flex;
+  justify-content: center;
+}
 
 .letter .btn {
-  position: absolute;
   width: 293px;
-  height: 70px;
-  left: 580px;
-  top: 750px;  
+  height: 70px;   
   box-shadow: 0px 4px 41px rgba(112, 10, 160, 0.4);
   border-radius: 93px;
   background: linear-gradient(262.06deg, #941AE3 -11.14%, #7A09C2 103.75%);
@@ -162,15 +158,12 @@ export default {
   background: #81708C;
 } 
 .desktop {
-  position: absolute;
+  position: absoulute;
+  display: grid;
   height: 1080px;
   width: 100%;
- 
   background-image: url("/src/assets/pictures/landingBG.png"); 
   background-color: #c530c8; /* Used if the image is unavailable */
-  
-  /* background-position: center; */
-
   background-size: cover; 
 }
 

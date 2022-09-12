@@ -1,5 +1,14 @@
 <template>
   <div class="desktop">
+    <btn class="previous-btn" @click="$router.go(-1)"><svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="80"
+        height="80"
+        viewBox="0 0 24 24"
+      >
+        <path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z" />
+        <path d="M0 0h24v24H0z" fill="none" />
+      </svg></btn>
     <div class="register-container">
       <p id="register-label">Register</p>
       <div class="input-container">
@@ -119,10 +128,17 @@ const register = async () => {
   background: url(/src/assets/pictures/register-bg.jpg);
   background-repeat: no-repeat;
   background-size: cover;
+  text-align: -webkit-center;
+}
+.previous-btn{
+  position: fixed;
+  left: 0rem;
+  top: 0rem;
 }
 .register-container {
   position: relative;
   max-width: 3000px;
+  width: 600px;
   margin: 80px 250px;
   padding: 30px 60px;
   background: rgba(196, 60, 218, 0.16);
@@ -135,12 +151,9 @@ const register = async () => {
   border-radius: 50px;
 }
 
-.input-container {
-  display: grid;
-  grid-column-gap: 10vw;
-  grid-row-gap: 4rem;
-  grid-template-columns: repeat(2, 1fr);
-}
+/* .input-container {
+
+} */
 .input {
   margin-top: 20px;
 }
